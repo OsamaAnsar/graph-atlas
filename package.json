@@ -1,0 +1,25 @@
+{
+  "name": "graph-atlas",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A live LangGraph.js state machine, in the browser — semantic routing, semantic caching, RAG, and tool calling as real graph nodes, with the graph itself visualized as it executes.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@langchain/core": "^0.3.40",
+    "@langchain/langgraph": "^0.2.0",
+    "@langchain/openai": "^0.4.4",
+    "@langchain/textsplitters": "^0.1.0",
+    "langchain": "^0.3.15"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite": "^6.1.0",
+    "vitest": "^3.0.5"
+  }
+}

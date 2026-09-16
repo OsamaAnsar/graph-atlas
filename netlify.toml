@@ -1,0 +1,10 @@
+# Vite build, static output. No serverless functions — the OpenAI key is
+# supplied by the visitor at runtime and kept in their browser only.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[headers]]
+  for = "/*.mjs"
+  [headers.values]
+    Content-Type = "text/javascript; charset=utf-8"
