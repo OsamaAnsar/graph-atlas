@@ -7,7 +7,76 @@
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
-    <div id="app">Loading…</div>
+    <div class="wrap">
+      <header>
+        <h1>Graph Atlas</h1>
+        <p>
+          A live <code>LangGraph.js</code> state machine, running entirely in this browser tab.
+          Semantic routing, semantic caching, retrieval, and tool calling are real graph nodes —
+          watch the graph below light up as each query actually moves through it.
+        </p>
+      </header>
+
+      <main>
+        <section class="panel">
+          <h2>OpenAI key</h2>
+          <input
+            id="apiKey"
+            type="password"
+            placeholder="sk-… — stored only in this browser's localStorage, sent only to api.openai.com"
+          />
+          <div class="row">
+            <label for="model" style="color: var(--dim)">Model</label>
+            <select id="model">
+              <option value="gpt-4o-mini">gpt-4o-mini</option>
+              <option value="gpt-4o">gpt-4o</option>
+            </select>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>Ask something</h2>
+          <div class="row">
+            <input
+              id="query"
+              type="text"
+              placeholder="e.g. What's the Orbitfold's battery life? / What's 12 * 7? / What do you think about e-readers?"
+            />
+            <button id="ask">Run</button>
+          </div>
+          <p class="status" id="askStatus"></p>
+        </section>
+
+        <section class="panel">
+          <h2>Live graph</h2>
+          <div id="graphViz"></div>
+          <div class="legend">
+            <span><i class="active"></i> running</span>
+            <span><i class="done"></i> done</span>
+            <span><i class="cache-hit"></i> cache hit — skipped the model</span>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>Result</h2>
+          <div class="stats" id="stats"></div>
+          <p class="answer placeholder" id="answer">Ask something above.</p>
+          <div class="tool-trace" id="toolTrace"></div>
+        </section>
+      </main>
+
+      <footer>
+        Semantic routing picks a node by cosine similarity between the query and 3 route
+        descriptions — no LLM call. Semantic caching compares the query's embedding against every
+        prior answer this session and short-circuits on a near-duplicate. Retrieval runs against a
+        small fixed FAQ for a fictional e-reader, embedded in-browser via Transformers.js. Tool
+        calling runs a real calculator / current-time tool through the model's
+        <code>bindTools</code>. Nothing here touches a server except OpenAI's own API, using the
+        key above. Source on
+        <a href="https://github.com/OsamaAnsar/graph-atlas" target="_blank" rel="noreferrer">GitHub</a>.
+        Built by Osama Ansar.
+      </footer>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
